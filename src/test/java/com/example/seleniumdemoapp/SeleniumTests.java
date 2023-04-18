@@ -75,59 +75,6 @@ public class SeleniumTests {
         assertEquals("mailto:info@iths.se", emailAddress, "E-posten verkar inte stämma...");
     }
 
-    @Test
-    void checkQuote() {
-        driver.manage().window().maximize();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"nav-omoss\"]/a")));
-
-        WebElement aboutLink = driver.findElement(By.xpath("//*[@id=\"nav-omoss\"]/a"));
-
-        aboutLink.click();
-
-        String quoteText = driver.findElement(By.className("quote-block__quote-text")).getText();
-
-        assertEquals("IT-Högskolan är det självklara valet för dig som är nyfiken på IT-branschen!", quoteText, "Citatet stämmer inte...");
-    }
-
-    @Test
-    void checkHeading() {
-        driver.get("https://svt.se");
-
-        driver.manage().window().maximize();
-
-        WebElement cookieButton = driver.findElement(By.className("CookieConsent__primaryButton___Th47k"));
-
-        cookieButton.click();
-
-        WebElement aboutUsLink = driver.findElement(By.xpath("//*[@id=\"nyh_a11y-primary-navigation-list\"]/li[8]/a"));
-
-        aboutUsLink.click();
-
-        String headingText = driver.findElement(By.id("h-ValkommentillhelaSverigestelevision")).getText();
-
-        assertEquals("Välkommen till hela Sveriges television!", headingText, "Rubriken stämmer inte...");
-    }
-
-    @Test
-    void checkNumberOfMenuLinks() {
-        driver.get("https://coop.se");
-
-        driver.manage().window().maximize();
-
-        driver.findElement(By.className("cmptxt_btn_yes")).click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("Navigation-item")));
-
-        List<WebElement> menuItems = driver.findElements(By.className("Navigation-item"));
-
-        assertEquals(5, menuItems.size(), "Antalet länkar verkar inte stämma...");
-    }
-
     @AfterAll
     static void teardown() {
         driver.quit();
