@@ -126,32 +126,6 @@ public class SeleniumTests {
         assertEquals(5, menuItems.size(), "Antalet länkar verkar inte stämma...");
     }
 
-    @Test
-    @Disabled
-    void checkSearch() {
-        driver.get("https://sr.se");
-
-        driver.manage().window().maximize();
-
-        driver.findElement(By.id("acceptAllCookiesBtn")).click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-input")));
-
-        WebElement searchInput = driver.findElement(By.id("search-input"));
-
-        searchInput.sendKeys("p3");
-
-        searchInput.sendKeys(Keys.ENTER);
-
-        WebElement headingElement = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div[1]/section/section[1]/div/header/h6"));
-
-        String headingText = headingElement.getText();
-
-        assertEquals("Kanaler", headingText, "Rubriken i sökresultatet verkar inte stämma...");
-    }
-
     @AfterAll
     static void teardown() {
         driver.quit();
