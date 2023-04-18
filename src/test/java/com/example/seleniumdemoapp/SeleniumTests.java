@@ -31,7 +31,7 @@ public class SeleniumTests {
         options.addArguments("incognito");
         options.addArguments("headless");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @BeforeEach
